@@ -150,6 +150,66 @@
                     android:onClick="clickSetTime" />
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="End Time:"
+                    android:id="@+id/textView20"
+                    android:layout_weight="1"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Unknow"
+                    android:id="@+id/textView22"
+                    android:layout_weight="1"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="End time"
+                    android:id="@+id/button9"
+                    android:layout_weight="1"
+                    android:onClick="clickEndTime" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="End Time:"
+                    android:id="@+id/textView23"
+                    android:layout_weight="1"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Unknow"
+                    android:id="@+id/textView24"
+                    android:layout_weight="1"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="1st time"
+                    android:id="@+id/button10"
+                    android:layout_weight="1"
+                    android:onClick="FirstTime" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

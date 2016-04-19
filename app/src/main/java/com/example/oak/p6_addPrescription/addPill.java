@@ -1,6 +1,7 @@
 package com.example.oak.p6_addPrescription;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.oak.myapplication.R;
 import com.squareup.picasso.Picasso;
@@ -44,7 +46,8 @@ public class addPill extends AppCompatActivity {
     private String urlImageString;
     private ImageView pillImageView;
     private  String[] timStrings = {"1","2","3","4","5"};
-    private TextView showStartDateTextView;
+    private TextView showStartDateTextView,showEndDateTime,showFirstTime;
+    private TimePickerDialog timePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class addPill extends AppCompatActivity {
         //Bind WidgetView
         pillImageView = (ImageView) findViewById(R.id.imageView6);
         showStartDateTextView = (TextView) findViewById(R.id.textView19);
+        showEndDateTime = (TextView) findViewById(R.id.textView22);
+        showFirstTime = (TextView) findViewById(R.id.textView24);
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -85,21 +90,69 @@ public class addPill extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
                 showStartDateTextView.setText(Integer.toString(dayOfMonth) + "/" +
-                Integer.toString(monthOfYear + 1) + "/ " +
-                Integer.toString(year));
+                        Integer.toString(monthOfYear + 1) + "/ " +
+                        Integer.toString(year));
 
             }
 
-    }, intYear,intMonth,intDate );
+        }, intYear,intMonth,intDate );
 
         datePickerDialog.show();
 
     } // Click setTime
 
 
+    public void clickEndTime (View view) {
+
+        Calendar calendar = Calendar.getInstance();
+        int intDate = calendar.get(Calendar.DAY_OF_MONTH);
+        int intMonth = calendar.get(Calendar.MONTH);
+        int intYear = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog =  new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                showEndDateTime.setText(Integer.toString(dayOfMonth) + "/" +
+                        Integer.toString(monthOfYear + 1) + "/ " +
+                        Integer.toString(year));
+
+            }
+
+        }, intYear,intMonth,intDate );
+
+        datePickerDialog.show();
+
+    } // Click EndTime
 
 
+    public void FirstTime (View view) {
+        Calendar calendar = Calendar.getInstance();
+        timePickerDialog = new TimePickerDialog(addPill.this, onTimeSetListener,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                false);
 
+        timePickerDialog.setTitle("โปรดเลือกเวลา");
+        timePickerDialog.show();
+    }
+
+    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+            Calendar calendar = Calendar.getInstance();
+            Calendar cloneCalendar1 = (Calendar) calendar.clone();
+
+            cloneCalendar1.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            cloneCalendar1.set(Calendar.MINUTE, minute);
+            showFirstTime.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
+
+
+            Log.d("18April", "cloneCalendar1 ==> " + cloneCalendar1.getTime());
+
+        } // OnTimeSet
+    };
 
 
     private void showImage() {
@@ -155,7 +208,7 @@ public class addPill extends AppCompatActivity {
             strSideE = c.getString("side_effect");
             urlImageString = c.getString("storage_methods");
             //PIC
-           // urlImageString = c.getString("source");
+            // urlImageString = c.getString("source");
             //test
 
 
