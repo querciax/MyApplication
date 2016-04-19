@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_AllList"
+            android:icon="@drawable/ic_pill"
+            android:title="รายการยาปัจจุบัน"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_history"
+            android:title="ประวัติการทานยา"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_clock"
+            android:title="เพิ่มเวลาพบแพทย์"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_add"
+            android:title="เพิ่มจำนวนเม็ดยา"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <item
+            android:id="@+id/nav_manage1"
+            android:icon="@drawable/ic_pre"
+            android:title="จัดการข้อมูลยา"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    </group>
+
+    <item android:title="ข้อมูลบุคคล">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_information"
+                android:title="ข้อมูลส่วนตัว"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_manage"
+                android:title="จัดการข้อมูลผู้ดูแล"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <item
+                android:id="@+id/nav_send1"
+                android:icon="@drawable/ic_logout"
+                android:title="ออกจากระบบ"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </menu>
+    </item>
+
+</menu>

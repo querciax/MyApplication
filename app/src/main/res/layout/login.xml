@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/imgRegister"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/pill_minder"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:id="@+id/login_edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/imgRegister"
+        android:background="@android:drawable/edit_text"
+        android:layout_toRightOf="@+id/imageView2"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/login_edtPass"
+        android:background="@android:drawable/edit_text"
+        android:layout_alignStart="@+id/login_edtEmail"
+        android:layout_toRightOf="@+id/imageView3"
+        android:layout_below="@+id/login_edtEmail"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/user_login"
+        android:layout_alignBottom="@+id/login_edtEmail"
+        android:layout_alignTop="@+id/login_edtEmail"
+        android:layout_alignParentStart="true"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/key_login"
+        android:layout_toStartOf="@+id/login_edtEmail"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignBottom="@+id/login_edtPass"/>
+
+    <Button
+        android:id="@+id/btnGoToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="เข้าระบบ"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/login_edtPass"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3"/>
+
+    <Button
+        android:id="@+id/btnForgotPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnGoToLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="ลืมรหัสผ่าน"
+        android:visibility="invisible"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="สมัครสมาชิก"
+        android:id="@+id/btnLinktoRegister"
+        android:layout_alignParentBottom="true"
+        android:background="#e9ebea"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
