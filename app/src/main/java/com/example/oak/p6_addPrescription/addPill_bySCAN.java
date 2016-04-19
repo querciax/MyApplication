@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.oak.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,10 +35,16 @@ import java.util.List;
  */
 public class addPill_bySCAN extends AppCompatActivity{
 
+    private String urlImageString;
+    private ImageView pillImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pill);
+
+        //Bind WidgetView
+        pillImageView = (ImageView) findViewById(R.id.imageView6);
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -45,8 +53,21 @@ public class addPill_bySCAN extends AppCompatActivity{
         }
 
         showInfo();
+        showImage();
 
-    }
+    } //Main Method
+
+
+    private void showImage() {
+
+        Log.d("19April", "url ==> " + urlImageString);
+
+        Picasso.with(addPill_bySCAN.this).load(urlImageString).resize(150, 150).into(pillImageView);
+
+
+    } //Show Image Method
+
+
 
     public void showInfo() {
         final TextView tTradeN = (TextView)findViewById(R.id.tvTradeN);
@@ -71,6 +92,7 @@ public class addPill_bySCAN extends AppCompatActivity{
 //        String strUsedFor = "";
 //        String strHowto = "";
 //        String strSideE = "";
+        urlImageString = "";
 
         JSONObject c;
         try {
@@ -82,6 +104,14 @@ public class addPill_bySCAN extends AppCompatActivity{
 //            strUsedFor = c.getString("used_for");
 //            strHowto = c.getString("how_to");
 //            strSideE = c.getString("side_effect");
+            urlImageString = c.getString("storage_methods");
+
+
+           // urlImageString = "http://medalertapp.comli.com/picture/pic.jpg";
+
+
+
+            Log.d("19April", "strJSON == > " + resultServer);
 
             if(!strPill_ID.equals(""))
             {

@@ -1,13 +1,22 @@
 package com.example.oak.p6_addPrescription;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.oak.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,14 +35,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class addPill extends AppCompatActivity {
+
+    //Explicit
+    private String urlImageString;
+    private ImageView pillImageView;
+    private  String[] timStrings = {"1","2","3","4","5"};
+    private TextView showStartDateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pill);
+
+        //Bind WidgetView
+        pillImageView = (ImageView) findViewById(R.id.imageView6);
+        showStartDateTextView = (TextView) findViewById(R.id.textView19);
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -45,7 +65,51 @@ public class addPill extends AppCompatActivity {
 
         showInfo();
 
-    }
+        //ShowImage
+        showImage();
+
+
+
+
+    } //Main Method
+
+    public void clickSetTime (View view) {
+
+        Calendar calendar = Calendar.getInstance();
+        int intDate = calendar.get(Calendar.DAY_OF_MONTH);
+        int intMonth = calendar.get(Calendar.MONTH);
+        int intYear = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog =  new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                showStartDateTextView.setText(Integer.toString(dayOfMonth) + "/" +
+                Integer.toString(monthOfYear + 1) + "/ " +
+                Integer.toString(year));
+
+            }
+
+    }, intYear,intMonth,intDate );
+
+        datePickerDialog.show();
+
+    } // Click setTime
+
+
+
+
+
+
+
+    private void showImage() {
+
+        Log.d("19April", "url ==> " + urlImageString);
+
+        Picasso.with(addPill.this).load(urlImageString).resize(150, 150).into(pillImageView);
+
+
+    } //Show Image Method
 
     public void showInfo() {
         //final TextView tPill_ID = (TextView)findViewById(R.id.txtPillid);
@@ -55,6 +119,7 @@ public class addPill extends AppCompatActivity {
 //        final TextView tUsedFor = (TextView)findViewById(R.id.txtUsedFor);
 //        final TextView tHowto = (TextView)findViewById(R.id.txtHowto);
 //        final TextView tSideE = (TextView)findViewById(R.id.txtSideE);
+
 
 
         String url = "http://medalertapp.comli.com/addPill_getByID.php";
@@ -76,6 +141,7 @@ public class addPill extends AppCompatActivity {
         String strUsedFor = "";
         String strHowto = "";
         String strSideE = "";
+        urlImageString = "";
 
         JSONObject c;
         try {
@@ -87,6 +153,17 @@ public class addPill extends AppCompatActivity {
             strUsedFor = c.getString("used_for");
             strHowto = c.getString("how_to");
             strSideE = c.getString("side_effect");
+            urlImageString = c.getString("storage_methods");
+            //PIC
+           // urlImageString = c.getString("source");
+            //test
+
+
+
+
+            Log.d("19April", "strJSON == > " + resultServer);
+
+
 
             if(!strPill_ID.equals(""))
             {
@@ -97,6 +174,7 @@ public class addPill extends AppCompatActivity {
 //                tUsedFor.setText(strUsedFor);
 //                tHowto.setText(strHowto);
 //                tSideE.setText(strSideE);
+
             }
             else
             {
