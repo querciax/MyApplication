@@ -1,17 +1,17 @@
 package com.example.oak.myapplication;
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,28 +23,29 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-
 public class CreateAccount extends Activity{
 
+    private TextView showEndDateTime;
+    int age;
+    String strI;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createaccount);
 
-
+        showEndDateTime = (TextView) findViewById(R.id.textView21);
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
         // btnSave
         final Button btnSave = (Button) findViewById(R.id.btnCreateAcc);
         // Perform action on click
@@ -57,8 +58,44 @@ public class CreateAccount extends Activity{
                 }
             }
         });
-
     }
+
+    public void clickEndTime (View view) {
+
+        Calendar calendar = Calendar.getInstance();
+        final int intDate = calendar.get(Calendar.DAY_OF_MONTH);
+        final int intMonth = calendar.get(Calendar.MONTH);
+        final int intYear = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog =  new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+
+                showEndDateTime.setText(Integer.toString(dayOfMonth) + "/" +
+                        Integer.toString(monthOfYear + 1) + "/ " +
+                        Integer.toString(year));
+
+                age = intYear - year;
+
+                if(monthOfYear > intMonth){
+                    --age;
+                }
+                else if(monthOfYear == intMonth){
+                    if(dayOfMonth > intDate){
+                        --age;
+                    }
+                }
+               strI = "" + age;
+            }
+
+        }, intYear,intMonth,intDate );
+
+        datePickerDialog.show();
+
+    } // Click EndTime
+
 
 
     public boolean SaveData() {
@@ -71,15 +108,11 @@ public class CreateAccount extends Activity{
         final EditText txtWeight = (EditText)findViewById(R.id.edtWeight);
         final EditText txtHeight = (EditText)findViewById(R.id.edtHeight);
         final EditText txtTel = (EditText)findViewById(R.id.edtPhone);
-
-
         // Dialog
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
-
         ad.setTitle("Error! ");
         ad.setIcon(android.R.drawable.btn_star_big_on);
         ad.setPositiveButton("Close", null);
-
         // Check Email
         if(txtEmail.getText().length() == 0)
         {
@@ -121,11 +154,11 @@ public class CreateAccount extends Activity{
             return false;
         }
         // Check Age
-        if(txtAge.getText().length() == 0)
+        if(showEndDateTime.getText().length() == 0)
         {
             ad.setMessage("กรุณากรอก'อายุ' ");
             ad.show();
-            txtAge.requestFocus();
+            showEndDateTime.requestFocus();
             return false;
         }
         // Check Gender
@@ -160,22 +193,17 @@ public class CreateAccount extends Activity{
             txtTel.requestFocus();
             return false;
         }
-
-
         String url = "http://medalertapp.comli.com/user/CreateAccount.php";
-
-
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("sEmail", txtEmail.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", txtPassword.getText().toString()));
         params.add(new BasicNameValuePair("sFirstName", txtFirstname.getText().toString()));
         params.add(new BasicNameValuePair("sLastName", txtLastname.getText().toString()));
-        params.add(new BasicNameValuePair("sAge", txtAge.getText().toString()));
+        params.add(new BasicNameValuePair("sAge", strI));
         params.add(new BasicNameValuePair("sGender", txtGender.getText().toString()));
         params.add(new BasicNameValuePair("sWeight", txtWeight.getText().toString()));
         params.add(new BasicNameValuePair("sHeight", txtHeight.getText().toString()));
         params.add(new BasicNameValuePair("sTel", txtTel.getText().toString()));
-
         /** Get result from Server (Return the JSON Code)
          * StatusID = ? [0=Failed,1=Complete]
          * Error	= ?	[On case error return custom error message]
@@ -183,13 +211,10 @@ public class CreateAccount extends Activity{
          * Eg Save Failed = {"StatusID":"0","Error":"Email Exists!"}
          * Eg Save Complete = {"StatusID":"1","Error":""}
          */
-
         String resultServer  = getHttpPost(url,params);
-
         /*** Default Value ***/
         String strStatusID = "0";
         String strError = "Unknow Status!";
-
         JSONObject c;
         try {
             c = new JSONObject(resultServer);
@@ -198,7 +223,6 @@ public class CreateAccount extends Activity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         // Prepare Save Data
         if(strStatusID.equals("0"))
         {
@@ -212,25 +236,20 @@ public class CreateAccount extends Activity{
             txtPassword.setText("");
             txtFirstname.setText("");
             txtLastname.setText("");
-            txtAge.setText("");
+            showEndDateTime.setText("");
             txtGender.setText("");
             txtWeight.setText("");
             txtHeight.setText("");
             txtTel.setText("");
         }
-
-
         return true;
     }
-
     public String getHttpPost(String url,List<NameValuePair> params) {
         StringBuilder str = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(url);
-
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
-
             HttpResponse response = client.execute(httpPost);
             StatusLine statusLine = response.getStatusLine();
             int statusCode = statusLine.getStatusCode();
@@ -250,5 +269,4 @@ public class CreateAccount extends Activity{
         }
         return str.toString();
     }
-
 }

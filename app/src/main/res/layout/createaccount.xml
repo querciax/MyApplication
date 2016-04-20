@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
     <TextView
         android:id="@+id/tvHead"
         android:layout_width="wrap_content"
@@ -16,15 +15,6 @@
         android:text="สมัครสมาชิก"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ImageView
-        android:id="@+id/imgRegister"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/tvHead"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/user1"
-        android:layout_marginBottom="5dp"/>
-
     <TextView
         android:id="@+id/Email"
         android:layout_width="wrap_content"
@@ -33,8 +23,8 @@
         android:textColor="#FF0000"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="14dp"
-        android:layout_below="@+id/imgRegister"
-        android:layout_toStartOf="@+id/edtLastname"/>
+        android:layout_toStartOf="@+id/edtLastname"
+        android:layout_below="@+id/tvHead" />
     <EditText
         android:id="@+id/login_edtEmail"
         android:layout_width="wrap_content"
@@ -45,7 +35,6 @@
         android:textStyle="bold"
         android:inputType="textEmailAddress"
         />
-
     <TextView
         android:id="@+id/Pass"
         android:layout_width="wrap_content"
@@ -65,7 +54,6 @@
         android:inputType="textPassword"
         android:layout_toRightOf="@+id/Pass"
         android:layout_alignBottom="@+id/Pass"/>
-
     <TextView
         android:id="@+id/Firstname"
         android:layout_width="wrap_content"
@@ -85,7 +73,6 @@
         android:inputType="textPersonName"
         android:layout_alignBottom="@+id/Firstname"
         android:layout_toRightOf="@+id/Firstname"/>
-
     <TextView
         android:id="@+id/Lastname"
         android:layout_width="wrap_content"
@@ -103,7 +90,6 @@
         android:ems="20"
         android:inputType="textPersonName"
         android:layout_toRightOf="@+id/Lastname"/>
-
     <TextView
         android:id="@+id/Age"
         android:layout_width="wrap_content"
@@ -122,7 +108,6 @@
         android:inputType="numberDecimal"
         android:layout_toRightOf="@+id/Age"
         android:maxLength="3"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,7 +125,6 @@
         android:inputType="textShortMessage"
         android:maxLength="5"
         android:layout_alignBottom="@+id/Gender"/>
-
     <TextView
         android:id="@+id/Weight"
         android:layout_width="wrap_content"
@@ -167,7 +151,6 @@
         android:layout_above="@+id/edtHeight"
         android:layout_toEndOf="@+id/edtWeight"
         android:textSize="20dp"/>
-
     <TextView
         android:id="@+id/Height"
         android:layout_width="wrap_content"
@@ -194,7 +177,6 @@
         android:layout_above="@+id/edtPhone"
         android:layout_toEndOf="@+id/edtHeight"
         android:textSize="20dp"/>
-
     <TextView
         android:id="@+id/Phone"
         android:layout_width="wrap_content"
@@ -216,7 +198,6 @@
         android:layout_alignBottom="@+id/Phone"
         android:layout_toRightOf="@+id/Phone"
         android:maxLength="10"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -225,14 +206,21 @@
         android:layout_below="@+id/Phone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือก"
         android:id="@+id/btnAge"
         android:layout_toStartOf="@+id/Gender"
-        android:layout_alignBaseline="@+id/edtAge"/>
+        android:layout_alignBaseline="@+id/edtAge"
+        android:onClick="clickEndTime" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView21"
+        android:layout_below="@+id/btnCreateAcc"
+        android:layout_alignRight="@+id/kg"
+        android:layout_alignEnd="@+id/kg" />
 </RelativeLayout>
