@@ -1,7 +1,7 @@
-package com.example.oak.p3_addappointment;
+package com.example.oak.p6_addPrescription;
 
 /**
- * Created by Oak on 12/4/2559.
+ * Created by GGG on 21/4/2559.
  */
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -21,7 +21,7 @@ import android.widget.Button;
 
 import com.example.oak.myapplication.R;
 
-public class ShowEvent extends Activity implements OnClickListener {
+public class ShowEventPill extends Activity implements OnClickListener {
 
     PowerManager pm;
     WakeLock wl;

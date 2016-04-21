@@ -448,7 +448,24 @@
                         android:clickable="true"
                         android:contextClickable="false"
                         android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp">
+
+                        <ListView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:id="@+id/listView3" />
+                    </TableRow>
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
             </LinearLayout>
 
             <Button
@@ -457,7 +474,8 @@
                 android:text="เพิ่มยา"
                 android:id="@+id/button7"
                 android:layout_gravity="center_horizontal"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentBottom="true"
+                android:onClick="setValueTime" />
 
         </LinearLayout>
     </ScrollView>

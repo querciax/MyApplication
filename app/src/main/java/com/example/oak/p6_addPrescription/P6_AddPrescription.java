@@ -1,24 +1,35 @@
 package com.example.oak.p6_addPrescription;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oak.myapplication.R;
+import com.example.oak.p3_addappointment.AlarmReceiver;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Oak on 15/4/2559.
  */
 public class P6_AddPrescription extends AppCompatActivity {
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,5 +103,8 @@ public class P6_AddPrescription extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+
 
 }

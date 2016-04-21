@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
 
-public class P3_AddAppointment extends AppCompatActivity {
+public class P3_AddAppointment extends AppCompatActivity implements View.OnClickListener {
 
     //Bind Widget
 
@@ -36,6 +38,7 @@ public class P3_AddAppointment extends AppCompatActivity {
     private ListView listAlarm;
     public static ArrayList<String> listValue;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public class P3_AddAppointment extends AppCompatActivity {
         listValue = new ArrayList<String>();
         showDate = (TextView)findViewById(R.id.textView3);
         showTime = (TextView)findViewById(R.id.textView4);
+
 
 
     } //Main Method
@@ -118,11 +122,12 @@ public class P3_AddAppointment extends AppCompatActivity {
 
         cloneCalendar.set(Calendar.YEAR,yearMain);
         cloneCalendar.set(Calendar.MONTH,monthMain);
-        cloneCalendar.set(Calendar.DAY_OF_MONTH,dateMain);
-        cloneCalendar.set(Calendar.HOUR_OF_DAY,hourMain);
+        cloneCalendar.set(Calendar.DAY_OF_MONTH, dateMain);
+        cloneCalendar.set(Calendar.HOUR_OF_DAY, hourMain);
         cloneCalendar.set(Calendar.MINUTE,muniteMain);
-        cloneCalendar.set(Calendar.SECOND,0);
+        cloneCalendar.set(Calendar.SECOND, 0);
 
+        Log.d("21","month==>" + cloneCalendar.get(monthMain));
         mySetToAlarm(cloneCalendar);
 
     } // TIME + DATE MONTH YEAR
@@ -131,8 +136,11 @@ public class P3_AddAppointment extends AppCompatActivity {
 
         listValue.add(mySetCalendar1.getTime() + "");
 
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listValue);
         listAlarm.setAdapter(adapter);
+        listAlarm.setOnClickListener(this);
 
         final int _id = (int) System.currentTimeMillis();
 
@@ -143,4 +151,12 @@ public class P3_AddAppointment extends AppCompatActivity {
 
     } // mySetToAlarm mothod
 
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.listView){
+            P3_AddAppointment.listValue.remove(0);
+            this.finish();
+        }
+    }
 }

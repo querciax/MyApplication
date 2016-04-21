@@ -1,19 +1,20 @@
 package com.example.oak.p6_addPrescription;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -48,6 +49,9 @@ public class addPill extends AppCompatActivity {
     private  String[] timStrings = {"1","2","3","4","5"};
     private TextView showStartDateTextView,showEndDateTime,showFirstTime;
     private TimePickerDialog timePickerDialog;
+    int yearMain,monthMain,dateMain,hourMain,muniteMain;
+    private ListView listAlarm;
+    public static ArrayList<String> listValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class addPill extends AppCompatActivity {
         showStartDateTextView = (TextView) findViewById(R.id.textView19);
      //   showEndDateTime = (TextView) findViewById(R.id.textView22);
         showFirstTime = (TextView) findViewById(R.id.textView24);
+        listAlarm = (ListView)findViewById(R.id.listView3);
+        listValue = new ArrayList<String>();
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -92,6 +98,10 @@ public class addPill extends AppCompatActivity {
                 showStartDateTextView.setText(Integer.toString(dayOfMonth) + "/" +
                         Integer.toString(monthOfYear + 1) + "/ " +
                         Integer.toString(year));
+
+                yearMain = year;
+                monthMain = monthOfYear;
+                dateMain = dayOfMonth;
 
             }
 
@@ -133,6 +143,8 @@ public class addPill extends AppCompatActivity {
                 calendar.get(Calendar.MINUTE),
                 false);
 
+
+
         timePickerDialog.setTitle("โปรดเลือกเวลา");
         timePickerDialog.show();
     }
@@ -148,6 +160,8 @@ public class addPill extends AppCompatActivity {
             cloneCalendar1.set(Calendar.MINUTE, minute);
             showFirstTime.setText(Integer.toString(hourOfDay) + ":" + Integer.toString(minute));
 
+            hourMain = hourOfDay;
+            muniteMain = minute;
 
             Log.d("18April", "cloneCalendar1 ==> " + cloneCalendar1.getTime());
 
@@ -272,5 +286,40 @@ public class addPill extends AppCompatActivity {
         }
         return str.toString();
     }
+
+    public void setValueTime(View view){
+
+        Calendar calendar = Calendar.getInstance();
+        Calendar cloneCalendar = (Calendar)calendar.clone();
+
+        cloneCalendar.set(Calendar.YEAR,yearMain);
+        cloneCalendar.set(Calendar.MONTH,monthMain);
+        cloneCalendar.set(Calendar.DAY_OF_MONTH, dateMain);
+        cloneCalendar.set(Calendar.HOUR_OF_DAY, hourMain);
+        cloneCalendar.set(Calendar.MINUTE,muniteMain);
+        cloneCalendar.set(Calendar.SECOND, 0);
+
+        Log.d("21","month==>" + cloneCalendar.get(monthMain));
+        mySetToAlarm(cloneCalendar);
+    }
+
+    private void mySetToAlarm(Calendar mySetCalendar1) {
+
+        listValue.add(mySetCalendar1.getTime() + "");
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listValue);
+        listAlarm.setAdapter(adapter);
+
+
+        final int _id = (int) System.currentTimeMillis();
+
+        Intent intent = new Intent(getBaseContext(), AlarmReceiver_Pill.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), _id, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, mySetCalendar1.getTimeInMillis(), pendingIntent);
+
+    } // mySetToAlarm mothod
 
 }
