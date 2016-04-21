@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.oak.p3_addappointment.P3_AddAppointment;
@@ -38,10 +39,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +135,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void showInfo() {
+
         final TextView tHeader = (TextView)findViewById(R.id.txHeader);
+
 
         String url = "http://medalertapp.comli.com/user/getPatientID.php";
 
@@ -155,7 +161,10 @@ public class MainActivity extends AppCompatActivity
             if(!strMemberID.equals(""))
             {
                 if (tHeader != null) {
-                    tHeader.setText(strFirstName);
+
+                   tHeader.setText(strFirstName);
+
+
                 }
             }
             else
