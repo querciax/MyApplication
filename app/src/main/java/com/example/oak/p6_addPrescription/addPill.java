@@ -57,7 +57,7 @@ public class addPill extends AppCompatActivity {
         //Bind WidgetView
         pillImageView = (ImageView) findViewById(R.id.imageView6);
         showStartDateTextView = (TextView) findViewById(R.id.textView19);
-        showEndDateTime = (TextView) findViewById(R.id.textView22);
+     //   showEndDateTime = (TextView) findViewById(R.id.textView22);
         showFirstTime = (TextView) findViewById(R.id.textView24);
 
         // Permission StrictMode
@@ -102,7 +102,7 @@ public class addPill extends AppCompatActivity {
     } // Click setTime
 
 
-    public void clickEndTime (View view) {
+  /*  public void clickEndTime (View view) {
 
         Calendar calendar = Calendar.getInstance();
         int intDate = calendar.get(Calendar.DAY_OF_MONTH);
@@ -123,7 +123,7 @@ public class addPill extends AppCompatActivity {
 
         datePickerDialog.show();
 
-    } // Click EndTime
+    } // Click EndTime  */
 
 
     public void FirstTime (View view) {

@@ -43,21 +43,24 @@
 
         </TableRow>
 
-        <TableRow
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ชื่อการค้า :"
+                android:text="ชื่อการค้า :         "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/txtTradeN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TradeName" />
-        </TableRow>
+                android:text="TradeName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+        </LinearLayout>
 
         <TableRow
             android:layout_width="wrap_content"
@@ -65,14 +68,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ชื่อสามัญ :"
+                android:text="ชื่อสามัญ :         "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/txtGenN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GeneralName" />
+                android:text="GeneralName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
         </TableRow>
 
         <TableRow
@@ -81,57 +86,78 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="รูปแบบยา :"
+                android:text="รูปแบบยา :         "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/txtType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="type" />
+                android:text="type"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
         </TableRow>
 
-        <TableRow
+        <View
+            android:layout_height="2dip"
+            android:background="#60d4bb" />
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="สรรพคุณ :"
+                android:text="สรรพคุณ :         "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/txtUsedFor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="used for" />
-        </TableRow>
+                android:text="used for"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+        </LinearLayout>
 
-        <TableRow
+        <View
+            android:layout_height="2dip"
+            android:background="#60d4bb" />
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="วิธีการใช้ :"
+                android:text="วิธีการใช้ :         "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/txtHowto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="howto" />
-        </TableRow>
+                android:text="howto"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+        </LinearLayout>
 
-        <TableRow
+        <View
+            android:layout_height="2dip"
+            android:background="#60d4bb" />
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ผลข้างเคียง :"
+                android:text="ผลข้างเคียง :     "
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_column="0"/>
 
@@ -140,10 +166,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="side effect"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
+        <View
+            android:layout_height="2dip"
+            android:background="#60d4bb" />
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             >
@@ -151,7 +183,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="วิธีเก็บรักษา : "
+                android:text="วิธีเก็บรักษา :     "
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_column="0"/>
 
@@ -159,9 +191,10 @@
                 android:id="@+id/txtStorageMet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="storage methods"
                 />
-        </TableRow>
+        </LinearLayout>
 
     </TableLayout >
     </ScrollView>

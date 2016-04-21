@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.oak.p3_addappointment.P3_AddAppointment;
+import com.example.oak.p4_history.P4_History;
 import com.example.oak.p6_addPrescription.P6_AddPrescription;
 import com.example.oak.searchpill.searchpill.search_group_or_type;
 

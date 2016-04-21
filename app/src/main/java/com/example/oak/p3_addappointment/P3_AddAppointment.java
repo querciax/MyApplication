@@ -74,7 +74,7 @@ public class P3_AddAppointment extends AppCompatActivity {
 
         datePickerDialog.show();
 
-    } // Click setDate
+    } // Click setDate month year dialog and add
 
 
     public void clickTime (View view) {
@@ -108,7 +108,7 @@ public class P3_AddAppointment extends AppCompatActivity {
 
 
         } // OnTimeSet
-    };
+    }; // Time Dialog and add Time
 
 
     public void setValue(View view){
@@ -125,10 +125,7 @@ public class P3_AddAppointment extends AppCompatActivity {
 
         mySetToAlarm(cloneCalendar);
 
-
-
-
-    }
+    } // TIME + DATE MONTH YEAR
 
     private void mySetToAlarm(Calendar mySetCalendar1) {
 

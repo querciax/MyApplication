@@ -1,5 +1,8 @@
-package com.example.oak.searchpill.searchpill;
+package com.example.oak.p4_history;
 
+/**
+ * Created by GGG on 21/4/2559.
+ */
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +10,12 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.oak.myapplication.R;
+import com.example.oak.searchpill.searchpill.search_TYPE;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -30,15 +36,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by suppasri on 18/4/2559.
- */
-public class search_TYPE_detail extends Activity{
+public class P4_History_detail extends  Activity {
+
+    private String urlImageString;
+    private ImageView pillImageView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_detail);
+        setContentView(R.layout.b4_search_detail);
+
+        pillImageView = (ImageView) findViewById(R.id.imageView7);
 
         // Permission StrictMode
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -53,12 +61,21 @@ public class search_TYPE_detail extends Activity{
         // Perform action on click
         btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent newActivity = new Intent(search_TYPE_detail.this,search_TYPE.class);
+                Intent newActivity = new Intent(P4_History_detail.this,search_TYPE.class);
                 startActivity(newActivity);
             }
         });
 
-    }
+    } //Main Medthod
+
+    private void showImage() {
+
+        Log.d("19April", "url ==> " + urlImageString);
+
+        Picasso.with(P4_History_detail.this).load(urlImageString).resize(150, 150).into(pillImageView);
+
+
+    } //Show Image Method
 
     public void showInfo() {
         //final TextView tPill_ID = (TextView)findViewById(R.id.txtPillid);
@@ -90,6 +107,7 @@ public class search_TYPE_detail extends Activity{
         String strHowto = "";
         String strSideE = "";
         String strStorageMet = "";
+        urlImageString = "";
 
 
         JSONObject c;
@@ -102,7 +120,7 @@ public class search_TYPE_detail extends Activity{
             strUsedFor = c.getString("used_for");
             strHowto = c.getString("how_to");
             strSideE = c.getString("side_effect");
-            strStorageMet = c.getString("storage_methods");
+            urlImageString = c.getString("storage_methods");
 
             if(!strPill_ID.equals(""))
             {
@@ -130,7 +148,7 @@ public class search_TYPE_detail extends Activity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    } //SHOW INFO
 
     public String getHttpPost(String url,List<NameValuePair> params) {
         StringBuilder str = new StringBuilder();
@@ -157,6 +175,9 @@ public class search_TYPE_detail extends Activity{
             e.printStackTrace();
         }
         return str.toString();
-    }
+    } //POST METHOD
 
-}
+} //Main Class
+
+
+

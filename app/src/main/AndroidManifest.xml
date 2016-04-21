@@ -46,7 +46,7 @@
             android:name="com.example.oak.p3_addappointment.AlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".P4_History" />
+        <activity android:name="com.example.oak.p4_history.P4_History" />
         <activity android:name=".P5_ManagePill" />
 
         <activity android:name="com.example.oak.p6_addPrescription.P6_AddPrescription" />
